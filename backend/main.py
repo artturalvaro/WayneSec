@@ -1,7 +1,9 @@
 from fastapi import FastAPI
+from routes.auth_routes import router as auth_router
 import uvicorn
 
 app = FastAPI(title="WayneSec API")
+app.include_router(auth_router, prefix="/auth")
 
 @app.get("/")
 def main():

@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from schemas import UserCreate, UserLogin, UserOut
 from auth import register_user, login_user
 from database import SessionLocal
+from fastapi import Request, Response
 
 router = APIRouter(tags=["Auth"])
 
@@ -18,5 +19,5 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     return register_user(db, user)
 
 @router.post("/login")
-def login(login_data: UserLogin, db: Session = Depends(get_db)):
-    return login_user(db, login_data)
+def login(login_data: UserLogin, request: Request, response: Response, db: Session = Depends(get_db)):
+    return login_user(db, login_data, request, response)

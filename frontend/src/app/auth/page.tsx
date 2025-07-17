@@ -60,7 +60,7 @@ export default function Login() {
             const response = await api.post("/auth/login", data, { withCredentials: true });
             console.log(response.data);
             
-            Cookies.set("access_token", response.data.access_token);
+            Cookies.set("access_token", response.data.access_token, { expires: 7 });
             router.replace("/");
         } catch (error: any) {
             if (error.response) {

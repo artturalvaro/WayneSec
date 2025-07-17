@@ -1,18 +1,20 @@
 "use client";
 
-import "@/styles/globals.css"
 import useAuthRedirect from "@/hooks/useAuthRedirect";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
-export default function Home() {
-  const loading = useAuthRedirect({ protectedRoute: true });
+export default function DashboardPage() {
+  const { loading } = useAuthRedirect(true);
 
-  if (loading) {
-    return <div className="p-4 text-center">Carregando segurança... 🛡️</div>;
-  }
-  
+  if (loading) return <div className="p-4 text-center">Carregando painel de segurança...</div>;
+
   return (
-    <div>
-      <h1>Voce esta logado</h1>
-    </div>
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        
+      </SidebarInset>
+    </SidebarProvider>
   );
 }

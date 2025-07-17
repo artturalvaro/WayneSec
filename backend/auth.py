@@ -5,7 +5,6 @@ from schemas import UserCreate, UserLogin
 from passlib.hash import bcrypt as passlib_bcrypt
 from utils.jwt_handler import create_token
 from sqlalchemy.orm import Session
-from datetime import timedelta
 import time
 import logging
 import redis
